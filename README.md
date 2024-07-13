@@ -20,3 +20,12 @@
 |                            |                                                        |                    |                         |                   |            |  C++                     |[2326.Spiral_Matrix_IV_C++](https://github.com/simonyang0608/LeetCode/blob/main/Linked_List/2326.Spiral_Matrix_IV/C%2B%2B/2326.Spiral_Matrix_IV.cpp)|
 |                            | [23.Merge_k_Sorted_Lists]                              | Greedy             |O(k * (N*K))             |    O(2 * (N*K))   | Hard       |  Python      |[23.Merge_k_Sorted_Lists_Python](https://github.com/simonyang0608/LeetCode/blob/main/Linked_List/23.Merge_k_Sorted_Lists/Python/23.Merge_k_Sorted_Lists.py)|
 |                            |                                                        |                    |                         |                   |            | C++                      |[23.Merge_k_Sorted_Lists_C++](https://github.com/simonyang0608/LeetCode/blob/main/Linked_List/23.Merge_k_Sorted_Lists/C%2B%2B/23.Merge_k_Sorted_Lists.cpp)|
+
+<br>
+
+### Intermediate
+
+| Algorithms / Datastructures|               Title                                   |         Method      |  Time-Complexity        | Spatial-Complexity | Difficulty | Languages | Link |            
+| :-------------------------:| :---------------------------------------------------: | :-----------------: | :---------------------: |  :--------------:  | :--------: | :-------: | :--: |
+|   Depth_First_Search       | [547.Number_of_Provinces]                             | DFS                 | ~ O(R * C)              |     O(R)           | Medium     | Python    |[547.Number_of_Provinces_Python](https://github.com/simonyang0608/LeetCode/blob/main/Depth_First_Search/547.Number_of_Provinces/Python/547.Number_of_Provinces.py)|
+|                            |                                                       |                     |                         |                    |            | C++       |[547.Number_of_Provinces_C++](https://github.com/simonyang0608/LeetCode/blob/main/Depth_First_Search/547.Number_of_Provinces/C%2B%2B/547.Number_of_Provinces.cpp)|
