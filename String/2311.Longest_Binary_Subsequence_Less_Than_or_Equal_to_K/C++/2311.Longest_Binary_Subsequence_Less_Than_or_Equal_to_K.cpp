@@ -18,7 +18,7 @@ public:
         reverse(s.begin(), s.end());
 
         ///// Record summary values /////
-        long long int record_sum_val = 0;
+        int record_sum_val = 0;
 
         ///// Result summary counter /////
         int res_cnter = count(s.begin(), s.end(), '0');
@@ -30,7 +30,7 @@ public:
             ///// Check if the current indexed-char matched conditions or not /////
             if (s[s_idx] == '1')
             {
-                record_sum_val += (1 * pow(2, s_idx)); //Keep updating, accumulating
+                record_sum_val += (1 << s_idx); //Keep updating, accumulating
 
                 ///// Check if the current summary values exceed boundary or not /////
                 if (record_sum_val > k) { return res_cnter; }
