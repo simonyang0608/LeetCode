@@ -26,6 +26,7 @@
 |                            |                                                         |                    |                         |                   |            | C++          |[2311.Longest_Binary_Subsequence_Less_Than_or_Equal_to_K_C++](https://github.com/simonyang0608/LeetCode/blob/main/String/2311.Longest_Binary_Subsequence_Less_Than_or_Equal_to_K/C%2B%2B/2311.Longest_Binary_Subsequence_Less_Than_or_Equal_to_K.cpp)|
 |                            |[796.Rotate_String]                                      | In-place pointers  |O(N)                     |    O(N)           | Easy       | Python       |[796.Rotate_String_Python](https://github.com/simonyang0608/LeetCode/blob/main/String/796.Rotate_String/Python/796.Rotate_String.py)|
 |                            |                                                         |                    |                         |                   |            | C++          |[796.Rotate_String_C++](https://github.com/simonyang0608/LeetCode/blob/main/String/796.Rotate_String/C%2B%2B/796.Rotate_String.cpp)|
+|       Array                |[2391.Minimum_Amount_of_Time_to_Collect_Garbage]         | Greedy             |O(N)                     |    O(N)           | Medium     | Python       |[2391.Minimum_Amount_of_Time_to_Collect_Garbage_Python](https://github.com/simonyang0608/LeetCode/blob/main/Array/2391.Minimum_Amount_of_Time_to_Collect_Garbage/Python/2391.Minimum_Amount_of_Time_to_Collect_Garbage.py)|
 
 <br>
 
