@@ -33,6 +33,8 @@
 |       Array                |[2391.Minimum_Amount_of_Time_to_Collect_Garbage]         | Greedy             |O(N)                     |    O(N)           | Medium     | Python       |[2391.Minimum_Amount_of_Time_to_Collect_Garbage_Python](https://github.com/simonyang0608/LeetCode/blob/main/Array/2391.Minimum_Amount_of_Time_to_Collect_Garbage/Python/2391.Minimum_Amount_of_Time_to_Collect_Garbage.py)|
 |                            |[1030.Matrix_Cells_in_Distance_Order]                    | 2-pass record      |O(k * (R*C))             |    O(4 * (R*C))   | Easy       | Python       |[1030.Matrix_Cells_in_Distance_Order_Python](https://github.com/simonyang0608/LeetCode/blob/main/Array/1030.Matrix_Cells_in_Distance_Order/Python/1030.Matrix_Cells_in_Distance_Order.py)|
 |                            |                                                         |                    |                         |                   |            | C++          |[1030.Matrix_Cells_in_Distance_Order_C++](https://github.com/simonyang0608/LeetCode/blob/main/Array/1030.Matrix_Cells_in_Distance_Order/C%2B%2B/1030.Matrix_Cells_in_Distance_Order.cpp)|
+|                            |[54.Spiral_Matrix]                                       | Four-pointers      |O(N)                     |    O(N)           | Medium     | Python       |[54.Spiral_Matrix_Python](https://github.com/simonyang0608/LeetCode/blob/main/Array/54.Spiral_Matrix/Python/54.Spiral_Matrix.py)|
+|                            |                                                         |                    |                         |                   |            | C++          |[54.Spiral_Matrix_C++](https://github.com/simonyang0608/LeetCode/blob/main/Array/54.Spiral_Matrix/C%2B%2B/54.Spiral_Matrix.cpp)|
 
 <br>
 
