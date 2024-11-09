@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int minOperations(vector<int> & nums, int x) 
+    int minOperations(vector<int> & nums, int x)  
     {
         //=====================================//
         // Input type:                         //
