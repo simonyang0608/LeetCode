@@ -186,3 +186,12 @@
 |                            |                                                       |                     |                         |                    |            | C++       |[374.Guess_Number_Higher_or_Lower_C++](https://github.com/simonyang0608/LeetCode/blob/main/Binary_Search/374.Guess_Number_Higher_or_Lower/C%2B%2B/374.Guess_Number_Higher_or_Lower.cpp)|
 |  Greedy                    |[2285.Maximum_Total_Importance_of_Roads]               | Greedy              | ~ O(k * N)              |     O(N)           | Medium     | Python    |[2285.Maximum_Total_Importance_of_Roads_Python](https://github.com/simonyang0608/LeetCode/blob/main/Greedy/2285.Maximum_Total_Importance_of_Roads/Python/2285.Maximum_Total_Importance_of_Roads.py)|
 |                            |                                                       |                     |                         |                    |            | C++       |[2285.Maximum_Total_Importance_of_Roads_C++](https://github.com/simonyang0608/LeetCode/blob/main/Greedy/2285.Maximum_Total_Importance_of_Roads/C%2B%2B/2285.Maximum_Total_Importance_of_Roads.cpp)|
+
+<br>
+
+### Advanced
+
+| Algorithms / Datastructures|               Title                                   |         Method      |  Time-Complexity        | Spatial-Complexity | Difficulty | Languages | Link |            
+| :-------------------------:| :---------------------------------------------------: | :-----------------: | :---------------------: |  :--------------:  | :--------: | :-------: | :--: |
+|   Backtracking             | [17.Letter_Combinations_of_a_Phone_Number]            |      Backtracking   |      ~ O(K * N)         |      ~ O(K * N)    |    Medium  |   Python  |[17.Letter_Combinations_of_a_Phone_Number_Python](https://github.com/simonyang0608/LeetCode/blob/main/Backtracking/17.Letter_Combinations_of_a_Phone_Number/Python/17.Letter_Combinations_of_a_Phone_Number.py)|
+|                            |                                                       |                     |                         |                    |            |   C++     |[17.Letter_Combinations_of_a_Phone_Number_C++](https://github.com/simonyang0608/LeetCode/blob/main/Backtracking/17.Letter_Combinations_of_a_Phone_Number/C%2B%2B/17.Letter_Combinations_of_a_Phone_Number.cpp)|
