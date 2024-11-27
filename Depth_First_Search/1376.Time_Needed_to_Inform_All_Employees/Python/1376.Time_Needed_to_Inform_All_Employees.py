@@ -7,17 +7,17 @@ class Solution(object):
         :type informTime: List[int]
         :rtype: int
         """
-        #======================================#
-        # Recursion-based DFS traversal method #
-        #======================================#
+        #============================================#
+        # Recursion-based DFS & BFS traversal method #
+        #============================================#
 
         ############
         #Initialize
         ##### Record dictionary/hashmap #####
         record_dict = {}
 
-        #####################################################################
-        #Recursion-based DFS loop traversal with recorded dictionary/hashmap
+        ###########################################################################
+        #Recursion-based DFS & BFS loop traversal with recorded dictionary/hashmap
         for n_idx in range(n):
 
             ##### Check if the current indexed-value existed or not #####
@@ -26,19 +26,19 @@ class Solution(object):
             else:
                 (record_dict[manager[n_idx]]).append([n_idx, informTime[n_idx]]) #Keep updating/recording
 
-        return self.dfsTraversal(record_dict, (-1), 0) #Recursion function call
+        return self.dfsbfsTraversal(record_dict, (-1), 0) #Recursion function call
 
 
-    def dfsTraversal(self, record_dict, record_manager, record_time):
+    def dfsbfsTraversal(self, record_dict, record_manager, record_time):
         """
         :type record_dict: dict
         :type record_manager: int
         :type record_time: int
         :rtype: int
         """
-        #========================================#
-        # Recursion-based DFS traversal function #
-        #========================================#
+        #==============================================#
+        # Recursion-based DFS & BFS traversal function #
+        #==============================================#
         if (record_manager not in record_dict): #Issue/Boundary-case handling
             return record_time
 
@@ -51,7 +51,7 @@ class Solution(object):
         #Whole process/flow
         for [sub_employee, sub_time] in record_dict[record_manager]:
 
-            tmp_time = self.dfsTraversal(record_dict, sub_employee, (record_time + sub_time)) #Recursion function call
+            tmp_time = self.dfsbfsTraversal(record_dict, sub_employee, (record_time + sub_time)) #Recursion function call
 
             ##### Check if the current time matched conditions or not #####
             if (tmp_time > res_max_time):
