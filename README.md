@@ -2,7 +2,7 @@
 
 ### Fundamental
 
-| Algorithms / Datastructures|  #  |               Title                               |         Method      |  Time-Complexity        | Spatial-Complexity | Difficulty | Languages | Link|             
+| Algorithms / Datastructures|  #  |               Title                               |         Method      |  Time-Complexity        | Spatial-Complexity | Difficulty | Languages | Link|           
 | :------------------------: | :--:|   ---------------------------------------------   | -----------------   | ---------------------   |  --------------    | ---------- | --------- |  -- |
 |        Linked_List         | 160 |  Intersection_of_Two_Linked_Lists                 |  In-place pointers  |      ~ O(N)             |        O(1)        |     Easy   |   Python  |[Intersection_of_Two_Linked_Lists_Python](https://github.com/simonyang0608/LeetCode/blob/main/Linked_List/160.Intersection_of_Two_Linked_Lists/Python/160.Intersection_of_Two_Linked_Lists.py)|
 |                            |     |                                                   |                     |                         |                    |            |   C++     |[Intersection_of_Two_Linked_Lists_C++](https://github.com/simonyang0608/LeetCode/blob/main/Linked_List/160.Intersection_of_Two_Linked_Lists/C%2B%2B/160.Intersection_of_Two_Linked_Lists.cpp)|
