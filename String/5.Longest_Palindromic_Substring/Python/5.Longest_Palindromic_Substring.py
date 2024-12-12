@@ -4,50 +4,74 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
-        #=====================================#
-        # Two-pointers based traversal method #
-        #=====================================#
+        #=================================#
+        # Manacher-based traversal method #
+        #=================================#
 
         ############
         #Initialize
         ##### Length of s string #####
         len_s = len(s)
 
-        ##### Result two-pointers (i.e. left, right) #####
-        res_left_ptr, res_right_ptr = [0], [0]
+        ##### Record new-s string #####
+        new_s = "@#"
 
-
-        ###################################
-        #Two-pointers based loop traversal
         for s_idx in range(len_s):
-            fst_max_str = self.mid2edge(len_s, s, s_idx, s_idx, res_left_ptr, res_right_ptr) #First sub-string
-            scnd_max_str = self.mid2edge(len_s, s, s_idx, (s_idx + 1), res_left_ptr, res_right_ptr) #Second sub-string
+            new_s += s[s_idx]
+            new_s += "#"
 
-        return s[res_left_ptr[0]: (res_right_ptr[0] + 1)]
+        new_s += "*"
+
+        len_new_s = len(new_s)
+
+        ##### Record traversal pointer #####
+        record_trav_ptr = 0
+
+        ##### Record dynamic-programming (i.e. DP) array #####
+        record_dp_arry = [0 for _ in range(len_new_s)]
+
+        ##### Record center, right-boundary #####
+        record_center, record_rbound = record_trav_ptr, record_trav_ptr
+
+        ##### Result maximun index, radius #####
+        res_max_idx, res_max_rds = (-1), 0
 
 
-    def mid2edge(self, len_s, s, record_left_ptr, record_right_ptr, res_left_ptr, res_right_ptr):
-        """
-        :type len_s: int
-        :type s: str
-        :type record_left_ptr: int
-        :type record_right_ptr: int
-        :type res_left_ptr: List[int]
-        :type res_right_ptr: List[int]
-        :rtype: None, void
-        """
-        #=======================================#
-        # Two-pointers based traversal function #
-        #=======================================#
+        #######################################################################
+        #Manacher-based loop traversal with recorded dynamic-programming array
+        while (record_trav_ptr < len_new_s):
+            record_mirror = ((2 * record_center) - record_trav_ptr) #Record mirror
 
-        ####################
-        #Whole process/flow
-        while (((record_left_ptr >= 0) and (record_right_ptr < len_s)) and (s[record_left_ptr] == s[record_right_ptr])):
-            if ((record_right_ptr - record_left_ptr) > (res_right_ptr[0] - res_left_ptr[0])):
-                res_left_ptr[0] = record_left_ptr
-                res_right_ptr[0] = record_right_ptr
+            ##### Check if the current indexed-pointer matched conditions or not #####
+            if ((record_trav_ptr < record_rbound) and ((record_trav_ptr + record_dp_arry[record_mirror]) < record_rbound)):
+                record_dp_arry[record_trav_ptr] = record_dp_arry[record_mirror] #Keep updating/overwriting
+            
+            elif ((record_trav_ptr < record_rbound) and ((record_trav_ptr + record_dp_arry[record_mirror]) > record_rbound)):
+                record_diff = (record_rbound - record_trav_ptr) #Record difference
+
+                record_dp_arry[record_trav_ptr] = record_diff #Keep updating/overwriting
+
+                while (((((record_trav_ptr - record_dp_arry[record_trav_ptr]) - 1) >= 0) and (((record_trav_ptr + record_dp_arry[record_trav_ptr]) + 1) < len_new_s)) and (new_s[((record_trav_ptr - record_dp_arry[record_trav_ptr]) - 1)] == new_s[((record_trav_ptr + record_dp_arry[record_trav_ptr]) + 1)])):
+                    record_dp_arry[record_trav_ptr] += 1 #Keep updating/accumulating
+
+                record_center = record_trav_ptr #Keep updating/overwriting
+                record_rbound = (record_trav_ptr + record_dp_arry[record_trav_ptr]) #Keep updating/overwriting
+
+            else:
+                while (((((record_trav_ptr - record_dp_arry[record_trav_ptr]) - 1) >= 0) and (((record_trav_ptr + record_dp_arry[record_trav_ptr]) + 1) < len_new_s)) and (new_s[((record_trav_ptr - record_dp_arry[record_trav_ptr]) - 1)] == new_s[((record_trav_ptr + record_dp_arry[record_trav_ptr]) + 1)])):
+                    record_dp_arry[record_trav_ptr] += 1 #Keep updating/accumulating
+
+                record_center = record_trav_ptr #Keep updating/overwriting
+                record_rbound = (record_trav_ptr + record_dp_arry[record_trav_ptr]) #Keep updating/overwriting
+
+            ##### Check if the current radius is larger or not #####
+            if (record_dp_arry[record_trav_ptr] > res_max_rds):
+                res_max_rds = record_dp_arry[record_trav_ptr] #Keep updating/overwriting
+
+                res_max_idx = record_trav_ptr #Keep updating/overwriting
             else:
                 pass
 
-            record_left_ptr -= 1 #Keep updating/traversing
-            record_right_ptr += 1 #Keep updating/traversing
+            record_trav_ptr += 1 #Keep updating/traversing
+
+        return s[(((res_max_idx - record_dp_arry[res_max_idx]) - 1) // 2): ((((res_max_idx - record_dp_arry[res_max_idx]) - 1) // 2) + res_max_rds)]
