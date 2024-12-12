@@ -10,53 +10,82 @@ public:
         //============================//
 
         /*Initialize*/
-        ///// Length of s string /////
-        int len_s = s.size();
+        ///// Length of strings (i.e. original, new) /////
+        int len_new_s, len_s = s.size();
 
-        ///// Result two-pointers (i.e. left, right) /////
-        int res_left_ptr = 0, res_right_ptr = 0;
+        ///// New string /////
+        string new_s = "$#";
 
-
-        /*Two-pointer based loop traversal*/
-        for (int s_idx = 0; (s_idx < len_s); (s_idx++)) //Whole
+        for (int s_idx = 0; (s_idx < len_s); (s_idx++))
         {
-            mid2edge(len_s, s, s_idx, s_idx, res_left_ptr, res_right_ptr); //First middle-edge function call
-            mid2edge(len_s, s, s_idx, (s_idx + 1), res_left_ptr, res_right_ptr); //Second middle-edge function call
-             
-        } //Whole
+            new_s += s[s_idx];
+            new_s += '#';
+        }
 
-        return s.substr(res_left_ptr, ((res_right_ptr - res_left_ptr) + 1));
-    }
+        new_s += '@';
+
+        len_new_s = new_s.size();
+
+        ///// Record traversal pointer /////
+        int record_trav_ptr = 0;
+
+        ///// Record mirror, center, right-bound /////
+        int record_mirror, record_center = record_trav_ptr, record_rbound = record_trav_ptr;
+
+        ///// Record dynamic-programming (i.e. DP) vector /////
+        vector<int> record_dp(len_new_s, 0);
+
+        ///// Result maximun index, radius /////
+        int res_max_idx, res_max_rds = 0;
 
 
-    void mid2edge(int & len_s, string & s, int record_left_ptr, int record_right_ptr, int & res_left_ptr, int & res_right_ptr)
-    {
-        //=====================================//
-        // Input type:                         //
-        //   - int ref. (length of s string)   //
-        //   - string ref. (s string)          //
-        //   - int (record left pointer)       //
-        //   - int (record right pointer)      //
-        //   - int ref. (result left pointer)  //
-        //   - int ref. (result right pointer) //
-        // Rerurn type:                        //
-        //   - void (no return)                //
-        //=====================================//
-
-        /*Whole process, flow*/
-        while (((record_left_ptr >= 0) && (record_right_ptr < len_s)) && (s[record_left_ptr] == s[record_right_ptr])) //Part
+        /*Manacher-based loop traversal with recorded dynamic-programming vector*/
+        while (record_trav_ptr < len_new_s) //Whole
         {
-            ///// Check if the current length is larger or not /////
-            if ((record_right_ptr - record_left_ptr) > (res_right_ptr - res_left_ptr))
+            record_mirror = ((2 * record_center) - record_trav_ptr); //Record mirror
+
+            ///// Check if the current pointer matched conditions or not /////
+            if ((record_trav_ptr < record_rbound) && ((record_trav_ptr + record_dp[record_mirror])) < record_rbound)
             {
-                res_left_ptr = record_left_ptr; //Keep updating, overwriting
-                res_right_ptr = record_right_ptr; //Keep updating, overwriting
+                record_dp[record_trav_ptr] = record_dp[record_mirror]; //Keep updating, overwriting
             }
+
+            else if ((record_trav_ptr < record_rbound) && ((record_trav_ptr + record_dp[record_mirror])) > record_rbound)
+            {
+                record_dp[record_trav_ptr] = (record_rbound - record_trav_ptr); //Keep updating, overwriting
+
+                while (((((record_trav_ptr - record_dp[record_trav_ptr]) - 1) >= 0) && (((record_trav_ptr + record_dp[record_trav_ptr]) + 1) < len_new_s)) && (new_s[((record_trav_ptr - record_dp[record_trav_ptr]) - 1)] == new_s[((record_trav_ptr + record_dp[record_trav_ptr]) + 1)])) //Radius
+                {
+                    ((record_dp[record_trav_ptr])++); //Keep updating, accumulating
+
+                } //Radius
+
+                record_rbound = (record_trav_ptr + record_dp[record_trav_ptr]); //Keep updating, overwriting
+                record_center = record_trav_ptr; //Keep updating, overwriting
+            }
+
+            else
+            {
+                record_dp[record_trav_ptr] = 0; //Keep updating, overwriting
+
+                while (((((record_trav_ptr - record_dp[record_trav_ptr]) - 1) >= 0) && (((record_trav_ptr + record_dp[record_trav_ptr]) + 1) < len_new_s)) && (new_s[((record_trav_ptr - record_dp[record_trav_ptr]) - 1)] == new_s[((record_trav_ptr + record_dp[record_trav_ptr]) + 1)])) //Radius
+                {
+                    ((record_dp[record_trav_ptr])++); //Keep updating, accumulating
+
+                } //Radius
+
+                record_rbound = (record_trav_ptr + record_dp[record_trav_ptr]); //Keep updating, overwriting
+                record_center = record_trav_ptr; //Keep updating, overwriting
+            }
+
+            ///// Check if the current radius is larger or not /////
+            if (record_dp[record_trav_ptr] > res_max_rds) { res_max_rds = record_dp[record_trav_ptr]; res_max_idx = record_trav_ptr; } //Keep updating, overwriting
             else { ; }
 
-            (record_left_ptr--); //Keep updating, traversing
-            (record_right_ptr++); //Keep updating, traversing
+            (record_trav_ptr++); //Keep updating, traversing
 
-        } //Part
+        } //Whole
+
+        return s.substr((((res_max_idx - record_dp[res_max_idx]) - 1) / 2), record_dp[res_max_idx]);
     }
 };
