@@ -11,9 +11,6 @@ public:
         //====================================//
 
         /*Initialize*/
-        ///// Length of nums vector /////
-        int len_nums = nums.size();
-
         ///// Record heap, priority-queue /////
         priority_queue<int, vector<int>, greater<int>> record_pq(nums.begin(), nums.end());
 
