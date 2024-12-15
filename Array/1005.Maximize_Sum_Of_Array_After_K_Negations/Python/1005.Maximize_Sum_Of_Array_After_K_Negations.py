@@ -11,9 +11,6 @@ class Solution(object):
 
         ############
         #Initialize
-        ##### Length of nums array #####
-        len_nums = len(nums)
-
         ##### Record heap/priority-queue #####
         record_pq = deepcopy(nums)
 
