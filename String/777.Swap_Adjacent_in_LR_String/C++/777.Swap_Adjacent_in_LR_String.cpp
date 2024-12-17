@@ -62,7 +62,8 @@ public:
                 if (start[string_idx] == 'R') { return false; }
                 else { ; }
             }
-        }
+            
+        } //Right
 
         return (record_left_stack.empty() && record_right_stack.empty()) ? true : false;
     }
