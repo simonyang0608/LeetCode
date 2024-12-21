@@ -8,51 +8,66 @@ public:
         // Return type:                       //
         //   - vector<int> (result vector)    //
         //====================================//
-        
+
         /*Initialize*/
         ///// Length of nums vector /////
         int len_nums = nums.size();
 
-        ///// Record dictionary, hashmap /////
-        unordered_map<int, int> record_map;
-
-        ///// Record minimun, maximun values /////
-        int record_min_val = (*min_element(nums.begin(), nums.end())), record_max_val = (*max_element(nums.begin(), nums.end()));
-
-        ///// Result vector /////
-        vector<int> res_vect;
+        ///// Record root index /////
+        int record_root_idx = 0;
 
 
-        /*Greedy-based loop traversal with recorded dictionary, hashmap*/
-        ///// Step 1: Record indexed-value with dictionary, hashmap /////
-        for (int nums_idx = 0; (nums_idx < len_nums); (nums_idx++)) //Whole
+        /*Heap-sort based loop traversal*/
+        ///// Step 1: Looped-traversal for bottom-up tree-nodes /////
+        for (int record_idx = ((len_nums - 1) / 2); (record_idx >= 0); (record_idx--)) //Bottom-up
         {
-            ///// Check if the current indexed-value existed or not /////
-            if (record_map.find(nums[nums_idx]) == record_map.end())
-            {
-                record_map[nums[nums_idx]] = 1; //Keep updating, recording
-            }
-            else { record_map[nums[nums_idx]] += 1; } //Keep updating, recording
+            heapSort(nums, record_idx, len_nums); //Recursion function call (i.e. Bottom-up)
+
+        } //Bottom-up
+
+        ///// Step 2: Post-process, Final completions /////
+        for (int record_idx = (len_nums - 1); (record_idx >= 1); (record_idx--)) //Whole
+        {
+            swap(nums[0], nums[record_idx]); //Keep updating, swapped
+
+            heapSort(nums, record_root_idx, record_idx); //Recursion function call
 
         } //Whole
 
-        ///// Step 2: Looped-traversal with recorded dictionary, hashmap /////
-        for (int min_max_idx = record_min_val; (min_max_idx <= record_max_val); (min_max_idx++)) //Whole
-        {
-            ///// Check if the current indexed-value existed or not /////
-            if (record_map.find(min_max_idx) != record_map.end())
-            {
-                for (int times_idx = 0; (times_idx < record_map[min_max_idx]); (times_idx++)) //Cycle-times
-                {
-                    res_vect.push_back(min_max_idx); //Keep updating, recording
+        return nums;
+    }
 
-                } //Cycle-times
-            }
 
-            else { ; }
+    void heapSort(vector<int> & nums, int & record_large_idx, int & len_nums)
+    {
+        //============================================//
+        // Input type:                                //
+        //   - vector<int> ref. (nums vector)         //
+        //   - int ref. (record large, maximun index) //
+        //   - int ref. (length of nums vector)       //
+        // Return type:                               //
+        //   - void (no return)                       //
+        //============================================//
 
-        } //Whole
+        /*Initialize*/
+        ///// Record indexes (i.e. left, right) /////
+        int record_left_idx = ((record_large_idx * 2) + 1), record_right_idx = ((record_large_idx * 2) + 2);
 
-        return res_vect;
+        ///// Result large, maximun index /////
+        int res_large_idx = record_large_idx;
+
+
+        /*Whole process, flow*/
+        ///// Check if the current indexed-value is larger or not /////
+        if ((record_left_idx < len_nums) && (nums[record_left_idx] >= nums[res_large_idx])) { res_large_idx = record_left_idx; } //Keep updating, overwriting
+        else { ; }
+
+        if ((record_right_idx < len_nums) && (nums[record_right_idx] >= nums[res_large_idx])) { res_large_idx = record_right_idx; } //Keep updating, overwriting
+        else { ; }
+
+        ///// Check if the current indexed-value matched conditions or not /////
+        if (res_large_idx != record_large_idx) { swap(nums[record_large_idx], nums[res_large_idx]);  heapSort(nums, res_large_idx, len_nums); } //Recursion function call
+
+        return;
     }
 };
