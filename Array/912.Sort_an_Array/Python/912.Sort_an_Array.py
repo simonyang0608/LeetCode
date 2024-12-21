@@ -4,46 +4,67 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        #===============================#
-        # Greedy-based traversal method #
-        #===============================#
+        #==================================#
+        # Heap-sort based traversal method #
+        #==================================#
 
         ############
         #Initialize
         ##### Length of nums array #####
         len_nums = len(nums)
 
-        ##### Record dictionary/hashmap #####
-        record_dict = {}
+        ################################
+        #Heap-sort based loop traversal
+        ##### Step 1: Looped-traversal for bottom-up tree-nodes ##### 
+        for record_idx in range(((len_nums - 1) // 2), (-1), (-1)):
+            self.heapSort(nums, len_nums, record_idx) #Recursion function call (i.e. button-up)
 
-        ##### Record minimun, maximun values #####
-        record_min_val, record_max_val = min(nums), max(nums)
+        ##### Step 2: Post-process, Final completions #####
+        for record_idx in range((len_nums - 1), 0, (-1)):
+            nums[0], nums[record_idx] = nums[record_idx], nums[0] #Keep updating, swapped
 
-        ##### Result array #####
-        res_arry = []
+            self.heapSort(nums, record_idx, 0) #Recursion function call
+
+        return nums
 
 
-        ##############################################################
-        #Greedy-based loop traversal with recorded dictionary/hashmap
-        ##### Step 1: Record indexed-value with dictionary/hashmap #####
-        for nums_idx in range(len_nums):
+    def heapSort(self, nums, len_nums, record_idx):
+        """
+        :type nums: List[int]
+        :type len_nums: int
+        :type record_idx: int
+        :rtype: None, void
+        """
+        #====================================#
+        # Recursion-based traversal function #
+        #====================================#
+        
+        ############
+        #Initialize
+        ##### Record indexes (i.e. left, right) #####
+        record_left_idx, record_right_idx = ((record_idx * 2) + 1), ((record_idx * 2) + 2)
 
-            ##### Check if the current indexed-value existed or not #####
-            if (nums[nums_idx] not in record_dict):
-                record_dict[nums[nums_idx]] = 1 #Keep updating/recording
-            else:
-                record_dict[nums[nums_idx]] += 1 #Keep updating/recording
+        ##### Result index #####
+        res_idx = record_idx
 
-        ##### Step 2: Looped-traversal with the recorded dictionary #####
-        record_max_val += 1 #Update/Accumulate
 
-        for record_idx in range(record_min_val, record_max_val):
+        ####################
+        #Whole process/flow
+        ##### Check if the current indexed-value is larger or not #####
+        if ((record_left_idx < len_nums) and (nums[record_left_idx] >= nums[res_idx])):
+            res_idx = record_left_idx #Keep updating/overwriting
+        else:
+            pass
 
-            ##### Check if the current indexed-value esisted or not #####
-            if (record_idx in record_dict):
-                for times_idx in range(record_dict[record_idx]):
-                    res_arry.append(record_idx) #Keep updating/recording
-            else:
-                pass
+        if ((record_right_idx < len_nums) and (nums[record_right_idx] >= nums[res_idx])):
+            res_idx = record_right_idx #Keep updating/overwriting
+        else:
+            pass
 
-        return res_arry
+        ##### Check if the current indexed-value matched conditions or not #####
+        if (res_idx != record_idx):
+            nums[record_idx], nums[res_idx] = nums[res_idx], nums[record_idx] #Update/Swapped
+
+            self.heapSort(nums, len_nums, res_idx) #Recursion function call
+
+        return
