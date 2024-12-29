@@ -46,6 +46,16 @@ class Solution(object):
 
 
     def dfsTraversal(self, heights, len_rows, len_cols, rows_idx, cols_idx, prev_val, record_arry):
+        """
+        :type heights: List[List[int]]
+        :type len_rows: int
+        :type len_cols: int
+        :type rows_idx: int
+        :type cols_idx: int
+        :type prev_val: int
+        :type record_arry: List[List[int]]
+        :rtype: List[List[int]]
+        """
         #========================================#
         # Recursion-based DFS traversal function #
         #========================================#
