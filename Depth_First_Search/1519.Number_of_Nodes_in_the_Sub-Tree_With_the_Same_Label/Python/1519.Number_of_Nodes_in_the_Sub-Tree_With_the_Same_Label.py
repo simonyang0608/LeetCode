@@ -1,84 +1,85 @@
-class Solution {
-public:
-    vector<int> countSubTrees(int n, vector<vector<int>> & edges, string labels) 
-    {
-        //=============================================//
-        // Input type:                                 //
-        //   - int (n-th nodes)                        //
-        //   - vector<vector<int>> ref. (edges vector) //
-        //   - string (labels string)                  //
-        // Return type:                                //
-        //   - vector<int> (result vector)             //
-        //=============================================//
+class Solution(object):
+    def countSubTrees(self, n, edges, labels):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type labels: str
+        :rtype: List[int]
+        """
+        #======================================#
+        # Recursion-based DFS traversal method #
+        #======================================#
 
-        /*Initialize*/
-        ///// Length of edges vector /////
-        int len_edges = edges.size();
+        ############
+        #Initialize
+        ##### Length of edges array #####
+        len_edges = len(edges)
 
-        ///// Record dictionary, hashmap /////
-        unordered_map<int, vector<int>> record_map;
+        ##### Record dictionary/hashmap #####
+        record_dict = {}
 
-        ///// Record value /////
-        int record_val = 0;
+        ##### Record value #####
+        record_val = 0
 
-        ///// Visit, Result vectors /////
-        vector<int> visit_vect(n, 0), res_vect(n, 0);
+        ##### Visit array #####
+        visit_arry = [0 for _ in range(n)]
 
-
-        /*Recursion-based DFS loop traversal with recorded dictionary, hashmap*/
-        for (int edges_idx = 0; (edges_idx < len_edges); (edges_idx++)) //Whole
-        {
-            (record_map[(edges[edges_idx])[0]]).emplace_back((edges[edges_idx])[1]); //Keep updating, recording
-            (record_map[(edges[edges_idx])[1]]).emplace_back((edges[edges_idx])[0]); //Keep updating, recording
-
-        } //Whole
-
-        vector<int> char_vect = dfsTraversal(record_map, record_val, labels, visit_vect, res_vect); //Recursion function call
-
-        return res_vect;
-    }
+        ##### Result array #####
+        res_arry = [0 for _ in range(n)]
 
 
-    vector<int> dfsTraversal(unordered_map<int, vector<int>> & record_map, int & record_val, string & labels, vector<int> & visit_vect, vector<int> & res_vect)
-    {
-        //=======================================================================//
-        // Input type:                                                           //
-        //   - unordered_map<int, vector<int>> ref. (record dictionary, hashmap) //
-        //   - int ref. (record value)                                           //
-        //   - string (labels string)                                            //
-        //   - vector<vector<int>> ref. (visit vector)                           //
-        //   - vector<int> ref. (result vector)                                  //
-        // Return type:                                                          //
-        //   - vector<int> (char vector)                                         //
-        //=======================================================================//
+        #####################################################################
+        #Recursion-based DFS loop traversal with recorded dictionary/hashmap
+        for edges_idx in range(len_edges):
 
-        /*Initialize*/
-        ///// Char vector /////
-        vector<int> char_vect(26, 0);
+            ##### Check if the current indexed-value existed or not #####
+            if ((edges[edges_idx])[0] not in record_dict):
+                record_dict[(edges[edges_idx])[0]] = [(edges[edges_idx])[1]] #Keep updating/recording
+            else:
+                (record_dict[(edges[edges_idx])[0]]).append((edges[edges_idx])[1]) #Keep updating/recording
 
-        /*Whole process, flow*/
-        ///// Check if the current indexed-node is visited or not /////
-        if (! visit_vect[record_val])
-        {
-            visit_vect[record_val] = 1; //Update, Overwrite
+            if ((edges[edges_idx])[1] not in record_dict):
+                record_dict[(edges[edges_idx])[1]] = [(edges[edges_idx])[0]] #Keep updating/recording
+            else:
+                (record_dict[(edges[edges_idx])[1]]).append((edges[edges_idx])[0]) #Keep updating/recording
 
-            ((char_vect[(labels[record_val] - 'a')])++); //Update, Accumulate
+        char_arry = self.dfsTraversal(record_dict, record_val, labels, visit_arry, res_arry) #Recursion function call
 
-            for (int & next_val: record_map[record_val]) //Whole
-            {
-                vector<int> record_char_vect = dfsTraversal(record_map, next_val, labels, visit_vect, res_vect); //Record char vector
+        return res_arry
 
-                for (int record_idx = 0; (record_idx < 26); (record_idx++)) //Whole
-                {
-                    char_vect[record_idx] += record_char_vect[record_idx]; //Keep updating, accumulating
+        
+    def dfsTraversal(self, record_dict, record_val, labels, visit_arry, res_arry):
+        """
+        :type record_dict: dict
+        :type record_val: int
+        :type labels: str
+        :type visit_arry: List[int]
+        :type res_arry: List[int]
+        :rtype: List[int]
+        """
+        #========================================#
+        # Recursion-based DFS traversal function #
+        #========================================#
 
-                } //Whole
+        ############
+        #Initialize
+        ##### Char array #####
+        char_arry = [0 for _ in range(26)]
 
-            } //Whole
+        ####################
+        #Whole process/flow
+        if (not visit_arry[record_val]):
+            visit_arry[record_val] = 1 #Update/Overwrite
 
-            res_vect[record_val] += char_vect[(labels[record_val] - 'a')]; //Update, Accumulate
-        }
+            char_arry[(ord(labels[record_val]) - 97)] += 1 #Update/Accumulate
 
-        return char_vect;
-    }
-};
+            if (record_val in record_dict):
+                for next_val in record_dict[record_val]:
+                    record_char_arry = self.dfsTraversal(record_dict, next_val, labels, visit_arry, res_arry) #Recursion function call
+
+                    for record_idx in range(26):
+                        char_arry[record_idx] += record_char_arry[record_idx] #Keep updating/accumulating
+
+            res_arry[record_val] += char_arry[(ord(labels[record_val]) - 97)] #Keep updating/accumulating
+
+        return char_arry
