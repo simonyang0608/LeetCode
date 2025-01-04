@@ -1,7 +1,7 @@
 class Solution {
 public:
     int rob(vector<int> & nums) 
-    {
+    { 
         //====================================//
         // Input type:                        //
         //   - vector<int> ref. (nums vector) //
