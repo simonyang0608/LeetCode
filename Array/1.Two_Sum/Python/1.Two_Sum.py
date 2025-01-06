@@ -5,9 +5,9 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        #===============================#
-        # Greedy-based traversal method #
-        #===============================#
+        #================================#
+        # Hashmap-based traversal method #
+        #================================#
 
         ############
         #Initialize
@@ -18,8 +18,8 @@ class Solution(object):
         record_dict = {}
 
 
-        ##############################################################
-        #Greedy-based loop traversal with recorded dictionary/hashmap
+        ###############################################################
+        #Hashmap-based loop traversal with recorded dictionary/hashmap
         for nums_idx in range(len_nums):
 
             ##### Check if the current indexed-value existed or not #####
