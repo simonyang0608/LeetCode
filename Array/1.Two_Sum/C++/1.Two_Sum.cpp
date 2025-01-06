@@ -18,7 +18,7 @@ public:
         unordered_map<int, int> record_map;
 
 
-        /*Greedy-based loop traversal with recorded dictionary, hashmap*/
+        /*Hashmap-based loop traversal*/
         for (int nums_idx = 0; (nums_idx < len_nums); (nums_idx++)) //Whole
         {
             ///// Check if the current indexed-value existed or not /////
