@@ -2,7 +2,7 @@
 
 ### Fundamental
 
-| Algorithms / Datastructures|  #  |               Title                               |         Method      |  Time-Complexity        | Spatial-Complexity | Difficulty | Languages | Link|           
+| Algorithms / Datastructures|  #  |               Title                               |         Method      |  Time-Complexity        | Spatial-Complexity | Difficulty | Languages | Link|            
 | :------------------------: | :--:|   ---------------------------------------------   | -----------------   | ---------------------   |  --------------    | ---------- | --------- |  -- |
 |        Linked_List         | 138 | Copy_List_with_Random_Pointer                     | Recursion           |       O(2 * N)          |      O(k * N)      |    Medium  | Python    |[Copy_List_with_Random_Pointer_Python](https://github.com/simonyang0608/LeetCode/blob/main/Linked_List/138.Copy_List_with_Random_Pointer/Python/138.Copy_List_with_Random_Pointer.py)|
 |                            |     |                                                   |                     |                         |                    |            |   C++     |[Copy_List_with_Random_Pointer_C++](https://github.com/simonyang0608/LeetCode/blob/main/Linked_List/138.Copy_List_with_Random_Pointer/C%2B%2B/138.Copy_List_with_Random_Pointer.cpp)|
