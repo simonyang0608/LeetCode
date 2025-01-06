@@ -4,9 +4,9 @@ class Solution(object):
         :type events: List[List[int]]
         :rtype: int
         """
-        #===============================#
-        # Greedy-based traversal method #
-        #===============================#
+        #============================================#
+        # Heap/Priority-queue based traversal method #
+        #============================================#
 
         ############
         #Initialize
@@ -41,8 +41,8 @@ class Solution(object):
         res_max_cnter = 0
 
 
-        #####################################################################
-        #Greedy-based loop traversal with recorded priority/heap-queue array
+        ##########################################
+        #Heap/Priority-queue based loop traversal
         for days_idx in range(record_min_days, record_max_days):
 
             ##### Check if the current days existed or not #####
