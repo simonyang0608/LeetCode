@@ -34,7 +34,7 @@ public:
         int res_max_cnter = 0;
 
 
-        /*Greedy-based loop traversal*/
+        /*Heap, Priority-queue based loop traversal*/
         for (int val_idx = record_min_val; (val_idx <= record_max_val); (val_idx++)) //Whole
         {
             while ((record_trav_idx < len_events) && ((events[record_trav_idx])[0] == val_idx)) //Part
