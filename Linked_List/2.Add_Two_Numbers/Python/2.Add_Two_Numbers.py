@@ -6,51 +6,57 @@
 class Solution(object):
     def addTwoNumbers(self, l1, l2):
         """
-        :type l1: ListNode
-        :type l2: ListNode
-        :rtype: ListNode
+        :type l1: Optional[ListNode]
+        :type l2: Optional[ListNode]
+        :rtype: Optional[ListNode]
         """
-        #===============================#
-        # Greedy-based traversal method #
-        #===============================#
+        #========================================#
+        # One-pass update based traversal method #
+        #========================================#
 
         ############
         #Initialize
-        ##### Record summary values (i.e. l1, l2) #####
-        record_sum_l1, record_sum_l2 = 0, 0
+        ##### Record list-node #####
+        lrecord = ListNode((-1))
 
-        ##### Record digits #####
-        record_digit = 0
+        ##### Record quotient #####
+        record_quot = 0
 
         ##### Result list-node #####
-        lres = ltmp = ListNode((-1))
+        lres = lrecord
 
 
-        ##########################################################
-        #Greedy-based loop traversal with recorded summary values
-        ##### Step 1: Record summary values with list-nodes (i.e. l1, l2) #####
-        while (l1):
-            record_sum_l1 += ((10 ** record_digit) * (l1.val)) #Keep updating/accumulating
+        ######################################
+        #One-pass update based loop traversal
+        while (l1 or l2):
+            res_sum_val = record_quot #Result summary value
 
-            record_digit += 1 #Keep updating/accumulating
+            ##### Check if the current list-node existed or not #####
+            if (l1):
+                res_sum_val += l1.val #Keep updating/accumulating
 
-            l1 = (l1.next) #Keep updating/overwriting
+                l1 = l1.next #Keep updating/overwriting
+            else:
+                pass
 
-        record_digit &= 0 #Update/Reset
+            if (l2):
+                res_sum_val += l2.val #Keep updating/accumulating
 
-        while (l2):
-            record_sum_l2 += ((10 ** record_digit) * (l2.val)) #Keep updating/accumulating
+                l2 = l2.next #Keep updating/overwriting
+            else:
+                pass
 
-            record_digit += 1 #Keep updating/accumulating
+            record_quot = (res_sum_val // 10) #Keep updating/overwriting
+            record_mod = (res_sum_val % 10) #Record mod
 
-            l2 = (l2.next) #Keep updating/overwriting
+            lrecord.next = ListNode(record_mod) #Keep updating/recording
 
-        ##### Step 2: Looped-traversal with recorded summary values #####
-        res_str = ((str((record_sum_l1 + record_sum_l2)))[::(-1)]) #Keep updating/overwriting
+            lrecord = lrecord.next #Keep updating/overwriting
 
-        for res_char in res_str:
-            (ltmp.next) = ListNode(int(res_char)) #Keep updating/newing
+        ##### Check if the current quotient matched conditions or not #####
+        if (record_quot):
+            lrecord.next = ListNode(record_quot) #Keep updating/recording
+        else:
+            pass
 
-            ltmp = (ltmp.next) #Keep updating/overwriting
-
-        return (lres.next)
+        return lres.next
