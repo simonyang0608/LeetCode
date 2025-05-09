@@ -4,7 +4,7 @@ public:
     {
         //=====================================================//
         // Input type:                                         //
-        //   - int (k-th nodes)                                //
+        //   - int (k-th nodes)                                // 
         //   - vector<vector<int>> ref. (rowConditions vector) //
         //   - vector<vector<int>> ref. (colConditions vector) //
         // Return type:                                        //
